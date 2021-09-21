@@ -19,6 +19,8 @@ async function getEvents(api_key, calendarList) {
     return events
 }
 
+
+
 /* == Get time delimiters ============================================================================== */
 
 function getSchoolYear() {
@@ -30,13 +32,13 @@ function getBounds() {
     const now = new Date()
     const DAY_MS = 24*60*60*1000
 
-    const firstOfMonth = new Date(now.getFullYear(), now.getMonth(), 1)
-    const firstMonthMonday = new Date(firstOfMonth - (firstOfMonth.getDay() - 1) * DAY_MS)
+    // Retrive monday of our week
+    const lowerBound = new Date(now - (now.getDay()) * DAY_MS)
 
-    const lastOfMonth = new Date(now.getFullYear(), now.getMonth()+2, 0)
-    const lastMonthSunday = new Date(lastOfMonth + lastOfMonth.getDay() * DAY_MS)
+    // Get sunday 4 weeks later
+    const upperBound = new Date(lowerBound.getTime() + DAY_MS * (4*7 - 1))
 
-    return [firstMonthMonday, lastMonthSunday]
+    return [lowerBound, upperBound]
 }
 
 

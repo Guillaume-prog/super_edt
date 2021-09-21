@@ -1,6 +1,6 @@
 <template>
     <div class="card" :class="getClass(event)" v-on:click="toggleFilter">
-        <h3>{{ event.raw }}</h3>
+        <h3>{{ event.raw/*`${event.infos.lesson} - ${event.infos.prof} [${event.infos.room}]`*/ }}</h3>
         <div class="submenu">{{ getTime(event.start, event.end) }}</div>
     </div>
 </template>
